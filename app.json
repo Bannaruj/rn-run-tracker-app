@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "rn-run-tracker-app",
-    "slug": "rn-run-tracker-app",
+    "name": "rn-bkk-coffee-app",
+    "slug": "rn-bkk-coffee-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "rnruntrackerapp",
+    "scheme": "rnbkkcoffeeapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -38,7 +38,8 @@
             "backgroundColor": "#000000"
           }
         }
-      ]
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true,

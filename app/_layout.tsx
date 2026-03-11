@@ -7,38 +7,54 @@ import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 
 export default function RootLayout() {
+  SplashScreen.preventAutoHideAsync();
+
   const [fontsLoaded] = useFonts({
     Kanit_400Regular,
     Kanit_700Bold,
   });
 
   useEffect(() => {
-    SplashScreen.hideAsync();
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
   }, [fontsLoaded]);
 
   if (!fontsLoaded) {
     return null;
   }
-
   return (
-    <Stack
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: "#f7501e",
-        },
-        headerTitleStyle: {
-          fontFamily: "Kanit_700Bold",
-          fontSize: 20,
-          color: "#fff",
-        },
-        headerTintColor: "#fff", //ปุ่มBackสีขาว
-        headerBackButtonDisplayMode: "minimal", // ซ่อนข้อความบนปุ่มBack
-      }}
-    >
+    <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="run" options={{ title: "RunTracker" }} />
-      <Stack.Screen name="add" options={{ title: "เพิ่มรายการวิ่ง" }} />
-      <Stack.Screen name="[id]" options={{ title: "รายละเอียดการวิ่ง" }} />
+      <Stack.Screen
+        name="home"
+        options={{
+          title: "Top 10 Bangkok coffee",
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            fontFamily: "Kanit_400Regular",
+            color: "#fff",
+          },
+          headerStyle: {
+            backgroundColor: "#714503",
+          },
+        }}
+      />
+      <Stack.Screen
+        name="detail"
+        options={{
+          title: "รายละเอียดร้าน",
+          headerBackButtonDisplayMode: "minimal",
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            fontFamily: "Kanit_400Regular",
+            color: "#fff",
+          },
+          headerStyle: {
+            backgroundColor: "#714503",
+          },
+        }}
+      />
     </Stack>
   );
 }

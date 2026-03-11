@@ -1,39 +1,41 @@
 import { router } from "expo-router";
-import React, { useEffect } from "react";
-import { ActivityIndicator, Image, StyleSheet, Text, View } from "react-native";
-const runimg = require("@/assets/images/Run_icon.png");
+import { useEffect } from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
 
-export default function Index() {
+const logo = require("@/assets/images/coffeeshop.png");
+
+export default function SplashScreen() {
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.replace("/run");
+      // ใช้ replace เพื่อไม่ให้กด Back กลับมาหน้านี้ได้
+      router.replace("/home");
     }, 3000);
-  });
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Image source={runimg} style={styles.img} />
-      <Text style={styles.appname}>Run Tracker</Text>
-      <Text style={styles.appthainame}>วิ้งเพื่อสุขภาพ</Text>
-      <ActivityIndicator size="large" color="#fff" />
+      <Image source={logo} style={styles.logo} />
+      <Text style={styles.title}>Top 10 Bangkok Coffee</Text>
+      <Text style={styles.caption}>ที่สุดของกาแฟในกรุงเทพฯ</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", alignItems: "center" },
-
-  img: { width: 200, height: 200 },
-
-  appname: {
-    fontFamily: "Kanit_700Bold",
-    fontSize: 24,
-    marginTop: 20,
-    marginBottom: 20,
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
   },
-  appthainame: {
+  logo: { width: 150, height: 150, marginBottom: 20, borderRadius: 20 },
+  title: { fontFamily: "Kanit_600SemiBold", fontSize: 28, color: "#4A3B32" },
+  caption: {
     fontFamily: "Kanit_400Regular",
     fontSize: 16,
-    marginTop: 20,
-    marginBottom: 20,
+    color: "#888",
+    marginTop: 10,
   },
 });
